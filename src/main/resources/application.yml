@@ -16,7 +16,7 @@ management:
     web:
       base-path: /
       exposure:
-        include: logfile
+        include: logfile, metrics
   endpoint:
     logfile:
       external-file: logs/reviewme.log
