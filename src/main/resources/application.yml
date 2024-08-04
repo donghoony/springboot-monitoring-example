@@ -16,15 +16,21 @@ management:
     web:
       base-path: /
       exposure:
-        include: health, loggers, logfile
+        include: logfile
+  endpoint:
+    logfile:
+      external-file: logs/reviewme.log
 
 logging:
+  config: classpath:logback-spring.xml
   file:
-    path: log
+    path: logs
+    name: reviewme.log
   level:
-    root: debug
+    springframework: DEBUG
   logback:
     rolling-policy:
-      file-name-pattern: /log/%d{yyyy-MM-dd}.%i.log
-      max-file-size: 10MB
       max-history: 100
+      file-name-pattern: reviewme.%d{yyyy-MM-dd}.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

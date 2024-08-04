@@ -1,0 +1,31 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN}</fileNamePattern>
+            <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <!-- 로그 콘솔 출력-->
+        <appender-ref ref="CONSOLE"/>
+        <!-- 로그 파일 출력-->
+        <appender-ref ref="ROLLING"/>
+    </root>
+
+    <logger name="org.springframework" level="DEBUG"/>
+    <logger name="hoony.montitor" level="DEBUG"/>
+
+</configuration>
